@@ -1,0 +1,91 @@
+{
+  "name": "@andreashuber69/eslint-config",
+  "version": "1.2.32",
+  "description": "Provides a comprehensive, carefullly curated and tested shareable eslint config for TypeScript projects.",
+  "keywords": [
+    "eslint",
+    "eslintconfig",
+    "eslint-config",
+    "typescript"
+  ],
+  "homepage": "https://github.com/andreashuber69/eslint-config/blob/master/README.md#----andreashuber69eslint-config",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andreashuber69/eslint-config.git"
+  },
+  "bugs": {
+    "url": "https://github.com/andreashuber69/eslint-config/issues"
+  },
+  "license": "Unlicense",
+  "author": {
+    "name": "Andreas Huber"
+  },
+  "type": "module",
+  "files": [
+    "/index.js",
+    "/*.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "prelint": "cspell '**' && markdownlint '**/*.md'",
+    "lint": "eslint --report-unused-disable-directives '.'",
+    "test-no-coverage": "node --import tsx --test test/*.spec.ts",
+    "test": "c8 --exclude 'test/**' --reporter=text --reporter=lcov npm run test-no-coverage",
+    "show-coverage": "vite 'coverage/lcov-report' --logLevel error --open",
+    "ci": "npm run lint && tsc && npm test",
+    "finish-release": "git push && git push --tags"
+  },
+  "peerDependencies": {
+    "@eslint/compat": "^1.2.4",
+    "@eslint/eslintrc": "^3.2.0",
+    "@eslint/js": "^9.16.0",
+    "@stylistic/eslint-plugin": "^2.11.0",
+    "@types/eslint": "^9.6.1",
+    "@types/eslint__eslintrc": "^2.1.2",
+    "@typescript-eslint/eslint-plugin": "^8.17.0",
+    "@typescript-eslint/parser": "^8.17.0",
+    "eslint": "^9.16.0",
+    "eslint-import-resolver-typescript": "^3.7.0",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-jsdoc": "^50.6.0",
+    "eslint-plugin-promise": "^7.2.1",
+    "eslint-plugin-react": "^7.37.2",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint-plugin-unicorn": "^56.0.1",
+    "globals": "^15.13.0",
+    "typescript-eslint": "^8.17.0"
+  },
+  "devDependencies": {
+    "@eslint/compat": "^1.2.4",
+    "@eslint/eslintrc": "^3.2.0",
+    "@eslint/js": "^9.16.0",
+    "@stylistic/eslint-plugin": "^2.11.0",
+    "@tsconfig/node-lts": "^22.0.1",
+    "@tsconfig/strictest": "^2.0.5",
+    "@types/eslint": "9.6.1",
+    "@types/eslint__eslintrc": "*",
+    "@types/node-fetch": "^2.6.12",
+    "@typescript-eslint/eslint-plugin": "8.17.0",
+    "@typescript-eslint/parser": "8.17.0",
+    "c8": "^10.1.2",
+    "coveralls": "^3.1.1",
+    "cspell": "^8.16.1",
+    "eslint": "9.16.0",
+    "eslint-import-resolver-typescript": "^3.7.0",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-jsdoc": "50.6.0",
+    "eslint-plugin-promise": "7.2.1",
+    "eslint-plugin-react": "^7.37.2",
+    "eslint-plugin-react-hooks": "5.1.0",
+    "eslint-plugin-unicorn": "^56.0.1",
+    "globals": "^15.13.0",
+    "markdownlint-cli": "^0.43.0",
+    "node-fetch": "^2.7.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.17.0",
+    "vite": "^6.0.3"
+  }
+}
