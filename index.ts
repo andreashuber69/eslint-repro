@@ -6,7 +6,7 @@ import { languageOptions } from "./languageOptions.js";
 
 const getRuleNames = async (config?: unknown[]) => {
     const options: ESLint.Options = {
-        baseConfig: [
+        overrideConfig: [
             // There's no other way
             // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
             ...((config ?? []) as Linter.Config[]),
@@ -15,7 +15,7 @@ const getRuleNames = async (config?: unknown[]) => {
     };
 
     const eslint = new ESLint(config ? options : undefined);
-    const fullConfig = (await eslint.calculateConfigForFile("index.js")) as unknown;
+    const fullConfig = (await eslint.calculateConfigForFile("index.ts")) as unknown;
 
     if (fullConfig && typeof fullConfig === "object" && "rules" in fullConfig) {
         const { rules } = fullConfig;
