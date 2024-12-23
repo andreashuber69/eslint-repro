@@ -4,10 +4,7 @@ import { ESLint } from "eslint";
 import unicorn from "eslint-plugin-unicorn";
 import { languageOptions } from "./languageOptions.js";
 
-const isRecord = (value: unknown): value is Record<string, unknown> =>
-    typeof value === "object" && value !== null;
-
-const getRules = async (config?: unknown[]): Promise<Record<string, unknown>> => {
+const getRuleNames = async (config?: unknown[]) => {
     const options: ESLint.Options = {
         baseConfig: [
             // There's no other way
@@ -22,28 +19,22 @@ const getRules = async (config?: unknown[]): Promise<Record<string, unknown>> =>
 
     if (fullConfig && typeof fullConfig === "object" && "rules" in fullConfig) {
         const { rules } = fullConfig;
+        const result = new Array<string>();
 
-        if (isRecord(rules)) {
-            return rules;
+        if (rules) {
+            for (const key of Object.keys(rules)) {
+                result.push(key);
+            }
         }
+
+        return result;
     }
 
     throw new Error("Unexpected config!");
 };
 
-const getRuleNames = (rules: unknown, prefix = "") => {
-    const result = new Array<string>();
 
-    if (rules && typeof rules === "object") {
-        for (const key of Object.keys(rules)) {
-            result.push(`${prefix}${prefix && "/"}${key}`);
-        }
-    }
-
-    return result;
-};
-
-for (const key of getRuleNames(await getRules([unicorn.configs["flat/all"]]))) {
+for (const key of await getRuleNames([unicorn.configs["flat/all"]])) {
     if (key.startsWith("@stylistic")) {
         console.log(key);
     }
