@@ -31,53 +31,19 @@ const getRules = async (config?: unknown[]): Promise<Record<string, unknown>> =>
     throw new Error("Unexpected config!");
 };
 
-const getRuleLevel = (entry: unknown): unknown => {
-    // Exhaustiveness does not make much sense here since we're only interested in number, string and Array
-    // eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check
-    switch (typeof entry) {
-        case "number":
-        case "string":
-            return entry;
-        default:
-            return Array.isArray(entry) && entry.length > 0 ? entry[0] : "error";
-    }
-};
-
-const getSeverityString = (entry: unknown): unknown => {
-    const ruleLevel = getRuleLevel(entry);
-
-    switch (ruleLevel) {
-        case 0:
-            return "off";
-        case 1:
-            return "warn";
-        case 2:
-            return "error";
-        default:
-            return ruleLevel;
-    }
-};
-
-const getSeverities = (rules: unknown, prefix = "") => {
-    const result: Record<string, unknown> = {};
+const getRuleNames = (rules: unknown, prefix = "") => {
+    const result = new Array<string>();
 
     if (rules && typeof rules === "object") {
-        for (const [id, value] of Object.entries(rules)) {
-            result[`${prefix}${prefix && "/"}${id}`] = getSeverityString(value);
+        for (const key of Object.keys(rules)) {
+            result.push(`${prefix}${prefix && "/"}${key}`);
         }
     }
 
     return result;
 };
 
-const getRuleSeverities = async (config?: unknown[]) =>
-    // eslint-disable-next-line no-warning-comments
-    // TODO: Possibly superfluous?
-    Object.fromEntries(Object.entries(getSeverities(await getRules(config))));
-
-const allConfigsRules = await getRuleSeverities([unicorn.configs["flat/all"]]);
-
-for (const key of Object.keys(allConfigsRules)) {
+for (const key of getRuleNames(await getRules([unicorn.configs["flat/all"]]))) {
     if (key.startsWith("@stylistic")) {
         console.log(key);
     }
