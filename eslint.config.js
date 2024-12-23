@@ -27,7 +27,7 @@ const allExtensions = [
 
 const config = [
     {
-        files: ["**/*.ts"],
+        files: ["**/*.ts", "**/*.js"],
     },
     {
         ignores: ["coverage/"],
