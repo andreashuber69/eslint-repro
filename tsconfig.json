@@ -8,6 +8,6 @@
     "exactOptionalPropertyTypes": false
   },
   "include": [
-    "test/**/*.ts"
+    "index.ts"
   ]
 }

@@ -2,7 +2,7 @@ import type { Linter } from "eslint";
 import { ESLint } from "eslint";
 
 import unicorn from "eslint-plugin-unicorn";
-import { languageOptions } from "../languageOptions.js";
+import { languageOptions } from "./languageOptions.js";
 
 const isRecord = (value: unknown): value is Record<string, unknown> =>
     typeof value === "object" && value !== null;

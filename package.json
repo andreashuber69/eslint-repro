@@ -29,7 +29,7 @@
     "access": "public"
   },
   "scripts": {
-    "start": "tsx ./test/index.spec.ts",
+    "start": "tsx ./index.ts",
     "lint": "eslint --report-unused-disable-directives '.'"
   },
   "devDependencies": {
