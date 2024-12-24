@@ -24,7 +24,11 @@ const getRuleNames = async (options?: ESLint.Options) => {
 };
 
 const options: ESLint.Options = {
+    overrideConfigFile: true,
     overrideConfig: [
+        {
+            files: ["**/*.ts", "**/*.js"],
+        },
         {
             rules: {
                 camelcase: "error",
