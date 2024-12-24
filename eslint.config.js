@@ -5,9 +5,6 @@ const config = [
         files: ["**/*.ts", "**/*.js"],
     },
     {
-        ignores: ["coverage/"],
-    },
-    {
         rules: {
             eqeqeq: "error",
         },
