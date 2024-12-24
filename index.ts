@@ -1,15 +1,12 @@
 import type { Linter } from "eslint";
 import { ESLint } from "eslint";
 
-import unicorn from "eslint-plugin-unicorn";
 import { languageOptions } from "./languageOptions.js";
 
-const getRuleNames = async (config?: unknown[]) => {
+const getRuleNames = async (config?: Linter.Config[]) => {
     const options: ESLint.Options = {
         overrideConfig: [
-            // There's no other way
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
-            ...((config ?? []) as Linter.Config[]),
+            ...(config ?? []),
             { languageOptions },
         ],
     };
@@ -33,9 +30,14 @@ const getRuleNames = async (config?: unknown[]) => {
     throw new Error("Unexpected config!");
 };
 
+const myConfig: Linter.Config[] = [
+    {
+        rules: {
+            camelcase: "error",
+        },
+    },
+];
 
-for (const key of await getRuleNames([unicorn.configs["flat/all"]])) {
-    if (key.startsWith("@stylistic")) {
-        console.log(key);
-    }
+for (const key of await getRuleNames(myConfig)) {
+    console.log(key);
 }

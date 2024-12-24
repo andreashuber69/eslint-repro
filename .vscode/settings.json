@@ -1,5 +1,4 @@
 {
-  "cSpell.import": ["../cspell.json"],
   "files.autoSave": "onFocusChange",
   "editor.rulers": [120],
   "git.confirmSync": false,
