@@ -7,8 +7,6 @@ export const languageOptions = {
     },
     parser: tsParser,
     parserOptions: {
-        // As of typescript-eslint v8.18.0, it is not entirely clear how projectService should be configured.
-        // Many examples specify allowDefaultProject: ["*.js"], but that does not work here.
         projectService: {
             allowDefaultProject: ["eslint.config.js"],
             defaultProject: "./tsconfig.json",
