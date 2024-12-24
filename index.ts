@@ -3,15 +3,8 @@ import { ESLint } from "eslint";
 
 import { languageOptions } from "./languageOptions.js";
 
-const getRuleNames = async (config?: Linter.Config[]) => {
-    const options: ESLint.Options = {
-        overrideConfig: [
-            ...(config ?? []),
-            { languageOptions },
-        ],
-    };
-
-    const eslint = new ESLint(config ? options : undefined);
+const getRuleNames = async (options?: ESLint.Options) => {
+    const eslint = new ESLint(options);
     const fullConfig = (await eslint.calculateConfigForFile("index.ts")) as unknown;
 
     if (fullConfig && typeof fullConfig === "object" && "rules" in fullConfig) {
@@ -30,14 +23,18 @@ const getRuleNames = async (config?: Linter.Config[]) => {
     throw new Error("Unexpected config!");
 };
 
-const myConfig: Linter.Config[] = [
-    {
-        rules: {
-            camelcase: "error",
+const options: ESLint.Options = {
+    overrideConfig: [
+        {
+            rules: {
+                camelcase: "error",
+            },
         },
-    },
-];
+        { languageOptions },
+    ],
+};
 
-for (const key of await getRuleNames(myConfig)) {
+
+for (const key of await getRuleNames(options)) {
     console.log(key);
 }
