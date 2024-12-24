@@ -1,33 +1,11 @@
 {
-  "name": "@andreashuber69/eslint-config",
-  "version": "1.2.32",
-  "description": "Provides a comprehensive, carefullly curated and tested shareable eslint config for TypeScript projects.",
-  "keywords": [
-    "eslint",
-    "eslintconfig",
-    "eslint-config",
-    "typescript"
-  ],
-  "homepage": "https://github.com/andreashuber69/eslint-config/blob/master/README.md#----andreashuber69eslint-config",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/andreashuber69/eslint-config.git"
-  },
-  "bugs": {
-    "url": "https://github.com/andreashuber69/eslint-config/issues"
-  },
+  "name": "eslint-repro",
+  "version": "0.0.1",
   "license": "Unlicense",
   "author": {
     "name": "Andreas Huber"
   },
   "type": "module",
-  "files": [
-    "/index.js",
-    "/*.md"
-  ],
-  "publishConfig": {
-    "access": "public"
-  },
   "scripts": {
     "start": "tsx ./index.ts",
     "lint": "eslint --report-unused-disable-directives '.'"
